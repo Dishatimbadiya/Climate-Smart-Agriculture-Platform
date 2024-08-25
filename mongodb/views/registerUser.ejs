@@ -1,0 +1,25 @@
+<form action="/registerUser" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" required minlength="3" maxlength="50">
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" required minlength="6">
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" required>
+
+    <label for="notificationFrequency">Notification Frequency:</label>
+    <select name="notificationFrequency">
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+    </select>
+
+    <label for="preferredUnits">Preferred Units:</label>
+    <select name="preferredUnits">
+        <option value="metric">Metric</option>
+        <option value="imperial">Imperial</option>
+    </select>
+
+    <button type="submit">Register</button>
+</form>
