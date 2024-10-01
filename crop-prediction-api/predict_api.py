@@ -17,6 +17,7 @@ def predict():
     try:
         # Get the data from the request
         data = request.json
+        # print(data)
         features = [
             data['N'],
             data['P'],
@@ -34,10 +35,11 @@ def predict():
         # Make prediction
         prediction = model.predict(input_data_scaled)
         
+        print("crop prediction : "+prediction[0])
         # Return the result
         return jsonify({'predicted_crop': prediction[0]})
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=4000) 

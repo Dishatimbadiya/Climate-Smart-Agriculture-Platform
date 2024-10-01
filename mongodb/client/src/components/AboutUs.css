@@ -1,0 +1,116 @@
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+h1, h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    text-align: center;
+    color: #ddd;
+}
+
+.mission-vision {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.mission, .vision {
+    width: 45%;
+    padding: 20px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.mission p, .vision p {
+    color: #ccc;
+}
+
+.goals {
+    margin-bottom: 40px;
+}
+
+.goals ul {
+    list-style-type: square;
+    margin-left: 20px;
+    color: #ddd;
+}
+
+.team {
+    margin-bottom: 40px;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: space-around;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.team-member img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.team-member h3 {
+    margin: 10px 0 5px;
+}
+
+.team-member p {
+    color: #bbb;
+}
+
+.achievements {
+    margin-bottom: 40px;
+}
+
+.achievements ul {
+    list-style-type: circle;
+    margin-left: 20px;
+    color: #ddd;
+}
+
+.about-footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #ccc;
+    border-top: 1px solid #444;
+}
+
+@media (max-width: 768px) {
+    .mission-vision {
+        flex-direction: column;
+    }
+
+    .mission, .vision {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .team-grid {
+        flex-direction: column;
+    }
+
+    .team-member {
+        margin-bottom: 20px;
+    }
+}

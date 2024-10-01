@@ -1,0 +1,75 @@
+.navbar {
+    background-color: #000000;
+    padding: 10px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    margin-right: 20px; /* More spacing between links */
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem; /* Consistent font size */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+.navbar ul li a:hover {
+    color: #007bff; /* Highlight on hover */
+}
+
+.navbar h2 {
+    margin: 0;
+    font-size: 1.5rem; /* Adjust size */
+}
+
+.logout-button {
+    background: none; 
+    border: none; 
+    color: white; 
+    cursor: pointer;
+    font-size: 1rem; 
+    text-align: left; 
+    padding: 0; 
+    margin: 0;
+    transition: opacity 0.3s ease, text-decoration 0.3s ease; /* Smooth hover effect */
+}
+
+.logout-button:hover {
+    text-decoration: underline; 
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: flex-start;
+    }
+
+    .navbar ul {
+        margin-top: 10px;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar ul li {
+        margin-right: 0;
+        margin-bottom: 10px; /* Spacing between stacked items */
+    }
+
+    .navbar h2 {
+        font-size: 1.2rem; /* Smaller heading for mobile */
+    }
+}

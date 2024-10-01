@@ -1,118 +1,88 @@
+// C:\Users\Disha\Climate-Smart-Agriculture-Platform\mongodb\server\controllers\userController.js
 const bcrypt = require('bcrypt');
-const { validationResult } = require("express-validator");
-const HttpError = require("../model/http-error");
-const User = require("../model/user");
+const User = require('../models/User');
 
-// Get all users
-const getUsers = async (req, res, next) => {
-    let users;
-    try {
-        users = await User.find({}, "-password");
-    } catch (err) {
-        const error = new HttpError(
-            "Fetching users failed, please try again later.",
-            500
-        );
-        return next(error);
-    }
-    res.json({ users: users.map((user) => user.toObject({ getters: true })) });
-};
-
-// Signup new user
-const signup = async (req, res, next) => {
-    const errors = validationResult(req);
-
-    // console.log(req.body);
-
-    if (!errors.isEmpty()) {
-        return next(
-            new HttpError("Invalid inputs passed, please check your data.", 422)
-        );
-    }
-
+exports.signup = async (req, res) => {
     const { username, password, email, notificationFrequency, preferredUnits } = req.body;
 
-    let existingUser;
-    try {
-        existingUser = await User.findOne({ email: email });
-    } catch (err) {
-        const error = new HttpError(
-            "Signing up failed, please try again later.",
-            500
-        );
-        return next(error);
-    }
-
-    if (existingUser) {
-        const error = new HttpError(
-            "User exists already, please login instead.",
-            422
-        );
-        return next(error);
-    }
-
-    // Hash the password before saving
-    const hashedPassword = await bcrypt.hash(password, 12);
-
-    const createdUser = new User({
-        username,
-        password: hashedPassword,
-        email,
-        preferences: {
-            notificationFrequency,
-            preferredUnits,
-        },
-    });
+    console.log("Incoming request data:", req.body);
 
     try {
-        await createdUser.save();
-    } catch (err) {
-        console.error("Error during user save:", err);
-        const error = new HttpError("Signing up failed, please try again.", 500);
-        return next(error);
-    }
+        if (!username || !password || !email) {
+            return res.status(400).json({ message: 'Username, email, and password are required.' });
+        }
 
-    res.render("index");
+        const hashedPassword = await bcrypt.hash(password, 12);
+        const newUser = new User({
+            username,
+            password: hashedPassword,
+            email,
+            preferences: { notificationFrequency, preferredUnits }
+        });
+
+        console.log("Registering user...");
+
+        await newUser.save(); // Save the user to the database
+        res.status(201).json({ message: 'User registered successfully' });
+    } catch (error) {
+        console.error('Signup failed:', error);
+        res.status(500).json({ message: 'Signup failed' });
+    }
 };
 
-// Login user
-const login = async (req, res, next) => {
+exports.login = async (req, res) => {
     const { email, password } = req.body;
 
-    let existingUser;
-
     try {
-        existingUser = await User.findOne({ email: email });
-    } catch (err) {
-        const error = new HttpError(
-            "Logging in failed, please try again later.",
-            500
-        );
-        return next(error);
+        const user = await User.findOne({ email });
+        if (!user || !(await bcrypt.compare(password, user.password))) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+        res.status(200).json({ message: 'Login successful', user });
+    } catch (error) {
+        res.status(500).json({ message: 'Login failed' });
     }
-
-    if (!existingUser) {
-        const error = new HttpError(
-            "Invalid credentials, could not log you in.",
-            401
-        );
-        return next(error);
-    }
-
-    // Compare the provided password with the stored hashed password
-    const isPasswordValid = await bcrypt.compare(password, existingUser.password);
-
-    if (!isPasswordValid) {
-        const error = new HttpError(
-            "Invalid credentials, could not log you in.",
-            401
-        );
-        return next(error);
-    }
-
-    res.json({ message: "Logged in!" });
 };
 
-exports.getUsers = getUsers;
-exports.signup = signup;
-exports.login = login;
+
+// GET user data
+exports.getUserData = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id); // Get user by ID
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({
+            username: user.username,
+            email: user.email,
+            notificationFrequency: user.preferences.notificationFrequency,
+            preferredUnits: user.preferences.preferredUnits,
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching user data' });
+    }
+};
+
+// PUT update user data
+exports.updateUserData = async (req, res) => {
+    const { username, email, notificationFrequency, preferredUnits } = req.body;
+
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            {
+                username,
+                email,
+                preferences: { notificationFrequency, preferredUnits },
+            },
+            { new: true } // Return the updated document
+        );
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({ message: 'User updated successfully', user });
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating user data' });
+    }
+};

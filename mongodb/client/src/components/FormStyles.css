@@ -1,0 +1,87 @@
+/* C:\Users\Disha\Climate-Smart-Agriculture-Platform\mongodb\client\src\components\FormStyles.css */
+
+form {
+  margin: 20px auto;
+  padding: 30px;
+  border: 1px solid #444; /* Darker border for better contrast */
+  border-radius: 10px; /* Slightly more rounded corners */
+  max-width: 400px;
+  background-color: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* More pronounced shadow for depth */
+  color: white;
+}
+
+input, select, button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  background-color: #333;
+  color: white;
+  border: 1px solid #555; /* Softer border */
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Slightly more pronounced glow */
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 12px;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Button animation */
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #ccc;
+}
+
+.error-message {
+  color: #ff4c4c;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.success-message {
+  color: #28a745;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+@media (max-width: 480px) {
+  form {
+      padding: 20px;
+      max-width: 90%;
+  }
+
+  input, select, button {
+      font-size: 14px;
+  }
+
+  button {
+      padding: 10px;
+  }
+}
