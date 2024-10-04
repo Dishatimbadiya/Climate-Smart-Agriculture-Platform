@@ -3,9 +3,25 @@ import axios from 'axios';
 import './FormStyles.css'; // Reuse your existing styles or create new styles for this form
 import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
 
+const getUserId = () => {
+    const storedUser = localStorage.getItem('user'); // Retrieve the user data from localStorage
+    if (storedUser) {
+        const user = JSON.parse(storedUser); // Parse the JSON string back to an object
+        return user._id; // Access the _id (or user_id) property
+    } else {
+        return null; // Handle the case where there is no user data in localStorage
+    }
+};
 
 const FarmForm = () => {
     const { user } = useAuth();
+    const user_id = getUserId(user);
+
+    if (user_id) {
+        console.log("User ID:", user_id);
+    } else {
+        console.log("No user found in localStorage.");
+    }
     const [formData, setFormData] = useState({
         location: '',
         crop_type: '',
@@ -26,7 +42,6 @@ const FarmForm = () => {
         e.preventDefault();
         try {
             // Assuming user_id is fetched from logged-in user data
-            const user_id = user.email;
             const response = await axios.post('http://localhost:3000/api/farms', {
                 ...formData,
                 user_id
