@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './FormStyles.css'; // Reuse your existing styles or create new styles for this form
 import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
 
@@ -16,12 +17,14 @@ const getUserId = () => {
 const FarmForm = () => {
     const { user } = useAuth();
     const user_id = getUserId(user);
+    const navigate = useNavigate(); // Move this inside the component
 
     if (user_id) {
         console.log("User ID:", user_id);
     } else {
         console.log("No user found in localStorage.");
     }
+
     const [formData, setFormData] = useState({
         location: '',
         crop_type: '',
@@ -41,13 +44,12 @@ const FarmForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Assuming user_id is fetched from logged-in user data
             const response = await axios.post('http://localhost:3000/api/farms', {
                 ...formData,
                 user_id
             });
             console.log("Farm data submitted", response.data);
-            // You can redirect or show a success message here
+            navigate('/'); // This will redirect after successful submission
         } catch (error) {
             console.error("Error submitting farm data", error);
         }
@@ -92,7 +94,7 @@ const FarmForm = () => {
                 name="soil_type"
                 value={formData.soil_type}
                 onChange={handleChange}
-                required
+                required 
             />
 
             <label htmlFor="irrigation_system">Irrigation System:</label>

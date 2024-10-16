@@ -14,7 +14,13 @@ router.post('/signup', [
 
 router.post('/login', userController.login);
 
-router.get('/:id', userController.getUserData); // Route to get user data
-router.put('/:id', userController.updateUserData);
+// Route to get user data
+router.get('/:id', userController.getUserData);
+
+// Route to update user data
+router.put('/:id/preferences', userController.updateUserData);
+
+// Route to change password
+router.put('/:id/change-password', userController.changePassword);
 
 module.exports = router;

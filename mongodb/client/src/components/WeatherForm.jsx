@@ -32,7 +32,7 @@ const WeatherForm = () => {
 
         return (
             <div>
-                <h2>Current Weather Data for {name}</h2>
+                <h2 style={{ color: "black" }}>Current Weather Data for {name}</h2>
                 <p><strong>Coordinates:</strong> {`Lon: ${coord.lon}, Lat: ${coord.lat}`}</p>
                 <p><strong>Condition:</strong> {`${weather[0].main} - ${weather[0].description}`}</p>
                 <p><strong>Temperature:</strong> {`${main.temp}° ${tempMetric === 'imperial' ? 'F' : 'C'}`}</p>

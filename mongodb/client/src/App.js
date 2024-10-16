@@ -11,6 +11,7 @@ import Weather from './components/Weather';
 import Home from './components/Home';
 import AboutUs from './components/AboutUs';
 import FarmDetails from './components/FarmForm'
+import PlantingCal from './components/PlanttingCale'
 import { AuthProvider } from './context/AuthContext';
 import './App.css';
 
@@ -29,6 +30,7 @@ function App() {
             <Route path="/weather" element={<Weather />} />
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/farmDetails" element={<FarmDetails />} />
+            <Route path="/plantingCal" element={<PlantingCal />} />
           </Routes>
         </div>
       </Router>

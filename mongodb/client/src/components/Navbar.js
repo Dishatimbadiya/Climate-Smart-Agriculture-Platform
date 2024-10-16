@@ -57,6 +57,7 @@ function Navbar() {
             <li><Link to="/weather">Weather Data</Link></li>
             <li><Link to="/farmDetails">Farm Details</Link></li>
             <li><Link to="/aboutus">About Us</Link></li>
+            <li><Link to="/plantingCal">Planting Calender</Link></li>
             <li>
               {/* Logout button */}
               <button onClick={handleLogout} className="logout-button">Logout</button>
