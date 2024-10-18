@@ -13,6 +13,9 @@ import AboutUs from './components/AboutUs';
 import FarmDetails from './components/FarmForm'
 import PlantingCal from './components/PlanttingCale'
 import { AuthProvider } from './context/AuthContext';
+import RegisterSeed from './components/RegisterSeed';
+import SeedList from './components/SeedList';
+import RequestManager from './components/RequestManager';
 import './App.css';
 
 function App() {
@@ -31,6 +34,9 @@ function App() {
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/farmDetails" element={<FarmDetails />} />
             <Route path="/plantingCal" element={<PlantingCal />} />
+            <Route path="/registerSeed" element={<RegisterSeed />} />
+            <Route path="/seedList" element={<SeedList />} />
+            <Route path="/requestManager" element={<RequestManager />} />
           </Routes>
         </div>
       </Router>

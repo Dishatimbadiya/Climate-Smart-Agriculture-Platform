@@ -8,9 +8,11 @@ const axios = require('axios');
 const path = require('path');
 const farmRoutes = require('./routes/farmRoutes');
 require('dotenv').config();
-
+const purchaseRoutes = require('./routes/purchaseRoutes');
 const userRoutes = require('./routes/userRoutes');
 const cropRoutes = require('./routes/cropRoutes');
+const seedRoutes = require('./routes/seedRoutes');
+const requestRoutes = require('./routes/requestRoutes');
 const apis = require("./api");
 
 const app = express();
@@ -78,6 +80,10 @@ const getWeatherData = async ({ latitude, longitude }, tempMetric) => {
 app.use('/api/users', userRoutes);
 app.use('/api/crops', cropRoutes);
 app.use('/api/farms', farmRoutes);
+app.use('/api/purchases', purchaseRoutes);
+app.use('/api/seeds', seedRoutes);
+app.use('/api/requests', requestRoutes);
+
 
 if (process.env.NODE_ENV === 'production') {
    app.use(express.static(path.join(__dirname, '../client/build')));

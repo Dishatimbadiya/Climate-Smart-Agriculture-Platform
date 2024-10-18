@@ -1,0 +1,88 @@
+.request-manager-container {
+  margin: 20px auto; /* Centering the container */
+  padding: 30px; /* Increased padding for better spacing */
+  border: 1px solid #ddd; /* Lighter border for a softer look */
+  border-radius: 8px; /* Slightly larger border radius */
+  background-color: #ffffff; /* Change background to white for contrast */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+.header {
+  color: #2c3e50; /* Darker color for better readability */
+  font-size: 26px; /* Slightly larger font size */
+  margin-bottom: 20px;
+  font-weight: bold; /* Make the header bold */
+  text-align: center; /* Center the header text */
+}
+
+.seed-list,
+.request-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.seed-item,
+.request-item {
+  border: 1px solid #e0e0e0; /* Lighter border for better contrast */
+  border-radius: 8px; /* Match the container's border radius */
+  padding: 15px; /* Increased padding for better readability */
+  margin: 10px 0;
+  background-color: #f8f9fa; /* Light gray background for items */
+  transition: box-shadow 0.3s; /* Smooth transition for hover effect */
+}
+
+.seed-item:hover,
+.request-item:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Add hover effect */
+}
+
+.seed-image {
+  max-width: 100%; /* Ensure the image fits within the container */
+  height: auto;
+  display: block;
+  margin-top: 10px;
+  border-radius: 4px; /* Add slight rounding to the image */
+}
+
+.button-group {
+  margin-top: 15px; /* Increased spacing for buttons */
+  display: flex; /* Use flexbox for better button alignment */
+  justify-content: flex-end; /* Align buttons to the right */
+}
+
+.grant-button,
+.decline-button {
+  padding: 8px 15px; /* Larger button size for better usability */
+  border: none;
+  border-radius: 4px; /* Slightly larger border radius */
+  cursor: pointer;
+  font-size: 14px; /* Increase font size for better readability */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition effects */
+}
+
+.grant-button {
+  background-color: #28a745; /* Green */
+  color: white;
+}
+
+.grant-button:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.decline-button {
+  background-color: #dc3545; /* Red */
+  color: white;
+}
+
+.decline-button:hover {
+  background-color: #c82333; /* Darker red on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.error {
+  color: #dc3545; /* Red */
+  margin-top: 15px; /* Increased spacing for error messages */
+  font-weight: bold; /* Make the error message bold */
+  text-align: center; /* Center the error message */
+}

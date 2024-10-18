@@ -57,6 +57,9 @@ function Navbar() {
             <li><Link to="/weather">Weather Data</Link></li>
             <li><Link to="/farmDetails">Farm Details</Link></li>
             <li><Link to="/aboutus">About Us</Link></li>
+            <li><Link to="/registerSeed">Register Seed</Link></li>
+            <li><Link to="/seedList">Seed List</Link></li>
+            <li><Link to="/requestManager">Requests</Link></li>
             <li><Link to="/plantingCal">Planting Calender</Link></li>
             <li>
               {/* Logout button */}
